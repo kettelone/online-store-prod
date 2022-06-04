@@ -18,6 +18,7 @@ module.exports = new Sequelize({
     },
   },
 })
+
 // new Sequelize(
 //   process.env.DB_NAME, // Название БД
 //   process.env.DB_USER, // Пользователь
@@ -34,18 +35,3 @@ module.exports = new Sequelize({
 //     port: process.env.DB_PORT,
 //   }
 // )
-
-new Sequelize({
-  database: process.env.DB_NAME,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  dialect: 'postgres',
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false, // <<<<<<< YOU NEED THIS
-    },
-  },
-})
