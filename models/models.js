@@ -29,6 +29,11 @@ const Type = sequelize.define('type', {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
 })
 
+const SubType = sequelize.define('subtype', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING, unique: true, allowNull: false },
+})
+
 const Brand = sequelize.define('brand', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
@@ -58,8 +63,11 @@ Rating.belongsTo(User)
 Basket.hasMany(BasketDevice)
 BasketDevice.belongsTo(Basket)
 
-Type.hasMany(Device)
-Device.belongsTo(Type)
+Type.hasMany(SubType)
+SubType.belongsTo(Type)
+
+SubType.hasMany(Device)
+Device.belongsTo(SubType)
 
 Brand.hasMany(Device)
 Device.belongsTo(Brand)
@@ -82,6 +90,7 @@ module.exports = {
   BasketDevice,
   Device,
   Type,
+  SubType,
   Brand,
   Rating,
   TypeBrand,
