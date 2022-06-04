@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1f69ed49.css",
+    "main.js": "/static/js/main.471178f8.js",
+    "static/media/eggs.svg": "/static/media/eggs.c6f932ab294f3e7247c23be474850aae.svg",
+    "static/media/dumpling.svg": "/static/media/dumpling.4d5e0e839a5e306d336c2d1e238c3b38.svg",
+    "static/media/cart.ico": "/static/media/cart.8d8de86003c1d1ac1d19.ico",
+    "static/media/snacks.svg": "/static/media/snacks.aab0ca6b46066ad4ed2d4d19cfe62276.svg",
+    "static/media/coffee.svg": "/static/media/coffee.c62d5c726494e6498a765f6db342c9ad.svg",
+    "static/media/doorExit.svg": "/static/media/doorExit.4dac85320aa9175cf646bb89205d6bb5.svg",
+    "static/media/cogwheel.svg": "/static/media/cogwheel.1a820d96c8ef0fc2049328d88d75d140.svg",
+    "static/media/cheese.svg": "/static/media/cheese.5f745e9805616a1389f7354902abfa5c.svg",
+    "static/media/bakalia.svg": "/static/media/bakalia.c526699222ac1a3e840255376f95098b.svg",
+    "static/media/meat.svg": "/static/media/meat.236b1c51db29fc5a586706eb6bd3cd8f.svg",
+    "static/media/drinks.svg": "/static/media/drinks.ed504e25a553e8fd94f641bb4aeee41c.svg",
+    "static/media/frozen.svg": "/static/media/frozen.ea0b912c30f5958896e88593eeb717c8.svg",
+    "static/media/milk.svg": "/static/media/milk.6a8d49f71907339ae43a1831d947afe7.svg",
+    "static/media/user.svg": "/static/media/user.5791675428140e73790cc5801c3fba30.svg",
+    "index.html": "/index.html",
+    "static/media/menu.svg": "/static/media/menu.aea105dfab764f8e2ff373336a45ec51.svg",
+    "main.1f69ed49.css.map": "/static/css/main.1f69ed49.css.map",
+    "main.471178f8.js.map": "/static/js/main.471178f8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1f69ed49.css",
+    "static/js/main.471178f8.js"
+  ]
+}
