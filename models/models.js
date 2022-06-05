@@ -22,6 +22,7 @@ const Device = sequelize.define('device', {
   price: { type: DataTypes.INTEGER, allowNull: false },
   rating: { type: DataTypes.INTEGER, defaultValue: 0 },
   img: { type: DataTypes.STRING, allowNull: false },
+  weight: { type: DataTypes.STRING, allowNull: false },
 })
 
 const Type = sequelize.define('type', {
@@ -65,6 +66,9 @@ BasketDevice.belongsTo(Basket)
 
 Type.hasMany(SubType)
 SubType.belongsTo(Type)
+
+Type.hasMany(Device)
+Device.belongsTo(SubType)
 
 SubType.hasMany(Device)
 Device.belongsTo(SubType)

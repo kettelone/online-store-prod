@@ -2,20 +2,24 @@ const uuid = require('uuid')
 const path = require('path')
 const { Device, DeviceInfo } = require('../models/models')
 const ApiError = require('../error/ApiError')
+const { type } = require('os')
 
 class DeviceController {
   async create(req, res, next) {
     try {
-      let { name, price, brandId, typeId, info } = req.body
+      let { name, price, brandId, typeId, info, weight, subtypeId } = req.body
       const { img } = req.files
       let fileName = uuid.v4() + '.jpg'
-      img.mv(path.resolve(__dirname, '..', 'static', fileName))
+      // img.mv(path.resolve(__dirname, '..', 'static', fileName))
+      img.mv(path.resolve(__dirname, '..', 'build', fileName))
       const device = await Device.create({
         name,
         price,
-        brandId,
         typeId,
+        brandId,
+        subtypeId,
         img: fileName,
+        weight,
       })
 
       if (info) {
@@ -31,36 +35,52 @@ class DeviceController {
 
       return res.json(device)
     } catch (e) {
-      next(ApiError.badRequest(e.message))
+      console.log(e)
+      // next(ApiError.badRequest(e.message))
     }
   }
 
   async getAll(req, res) {
-    let { brandId, typeId, limit, page } = req.query
+    let { brandId, typeId, limit, page, subtypeId } = req.query
     page = page || 1
     limit = limit || 9
     let offset = page * limit - limit
     let devices
-    if (!brandId && !typeId) {
+
+    console.log(typeId)
+    console.log(subtypeId)
+    console.log(brandId)
+
+    if (!typeId && !subtypeId && !brandId) {
       devices = await Device.findAndCountAll({ limit, offset })
     }
-    if (brandId && !typeId) {
-      devices = await Device.findAndCountAll({
-        where: { brandId },
-        limit,
-        offset,
-      })
-    }
-    if (!brandId && typeId) {
+
+    if (typeId && !subtypeId && !brandId) {
       devices = await Device.findAndCountAll({
         where: { typeId },
         limit,
         offset,
       })
     }
-    if (brandId && typeId) {
+
+    if (!typeId && subtypeId && !brandId) {
       devices = await Device.findAndCountAll({
-        where: { typeId, brandId },
+        where: { subtypeId },
+        limit,
+        offset,
+      })
+    }
+
+    if (typeId && subtypeId && !brandId) {
+      devices = await Device.findAndCountAll({
+        where: { subtypeId },
+        limit,
+        offset,
+      })
+    }
+    if (brandId && subtypeId) {
+      devices = await Device.findAndCountAll({
+        where: { subtypeId, brandId },
         limit,
         offset,
       })
@@ -75,6 +95,16 @@ class DeviceController {
       include: [{ model: DeviceInfo, as: 'info' }],
     })
     return res.json(device)
+  }
+
+  async editOne(req, res) {
+    const { id, price } = req.body.params
+    const device = await Device.findOne({
+      where: { id },
+    })
+    device.price = price
+
+    await device.save()
   }
 }
 
