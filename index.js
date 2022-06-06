@@ -15,6 +15,9 @@ app.use(express.json()) // чтобы приложение могло парси
 app.use(express.static(path.join(__dirname, 'build')))
 app.use(fileUpload({}))
 app.use('/api', router)
+// app.use('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build/index.html'));
+// });
 
 //Обработчик ошибок, последний middleware
 app.use(errorHandler)
