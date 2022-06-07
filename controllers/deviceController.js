@@ -46,10 +46,6 @@ class DeviceController {
     let offset = page * limit - limit
     let devices
 
-    console.log(typeId)
-    console.log(subtypeId)
-    console.log(brandId)
-
     if (!typeId && !subtypeId && !brandId) {
       devices = await Device.findAndCountAll({ limit, offset })
     }
@@ -97,13 +93,22 @@ class DeviceController {
   }
 
   async editOne(req, res) {
-    const { id, price } = req.body.params
+    const { id, price } = req.params
     const device = await Device.findOne({
       where: { id },
     })
     device.price = price
 
     await device.save()
+  }
+
+  async deleteOne(req, res) {
+    const { id } = req.query
+    const result = await Device.destroy({
+      where: { id },
+    })
+
+    console.log('Result is: ', result)
   }
 }
 

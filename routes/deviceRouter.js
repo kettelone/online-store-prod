@@ -6,5 +6,6 @@ router.get('/', deviceController.getAll)
 router.get('/:id', deviceController.getOne)
 router.post('/', deviceController.create)
 router.put('/', deviceController.editOne)
+router.delete('/', deviceController.deleteOne)
 
 module.exports = router
