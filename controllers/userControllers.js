@@ -11,7 +11,7 @@ const generateJwt = (id, email, role) => {
 
 class UserController {
   async registartion(req, res, next) {
-    const { email, password, role } = req.body
+    const { email, password, phone, firstName, secondName, role } = req.body
     if (!email || !password) {
       return next(ApiError.badRequest('The email or password is incorrect'))
     }
@@ -21,14 +21,29 @@ class UserController {
     }
 
     const hashedPassword = await bcrypt.hash(password, 5)
-    const user = await User.create({ email, role, password: hashedPassword })
+    const user = await User.create({
+      email,
+      role,
+      password: hashedPassword,
+      phone,
+      firstName,
+      secondName,
+    })
     const basket = await Basket.create({ userId: user.id })
-    const token = generateJwt(user.id, user.email, user.role)
+    const token = generateJwt(
+      user.id,
+      user.email,
+      user.role,
+      user.firstName,
+      user.secondName,
+      user.phone
+    )
     return res.json({ token })
   }
 
   async login(req, res, next) {
     const { email, password } = req.body
+    console.log('SERVER', email, password)
     const user = await User.findOne({ where: { email } })
     if (!user) {
       return next(ApiError.internal('User not found'))
@@ -44,6 +59,12 @@ class UserController {
   async check(req, res, next) {
     const token = generateJwt(req.user.id, req.user.email, req.user.role)
     return res.json({ token })
+  }
+
+  async fetchUser(req, res, next) {
+    const { email } = req.body
+    const userInfo = await User.findOne({ where: { email } })
+    return res.json({ userInfo })
   }
 }
 
