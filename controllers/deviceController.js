@@ -82,6 +82,14 @@ class DeviceController {
       })
     }
 
+    if (!typeId && !subtypeId && brandId) {
+      devices = await Device.findAndCountAll({
+        where: { brandId },
+        limit,
+        offset,
+      })
+    }
+
     if (brandId && subtypeId) {
       devices = await Device.findAndCountAll({
         where: { subtypeId, brandId },
