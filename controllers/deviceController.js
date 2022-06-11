@@ -21,16 +21,16 @@ class DeviceController {
         weight,
       })
 
-      if (info) {
-        info = JSON.parse(info)
-        info.forEach((i) =>
-          DeviceInfo.create({
-            title: i.title,
-            description: i.description,
-            deviceId: device.id,
-          })
-        )
-      }
+      // if (info) {
+      //   info = JSON.parse(info)
+      //   info.forEach((i) =>
+      //     DeviceInfo.create({
+      //       title: i.title,
+      //       description: i.description,
+      //       deviceId: device.id,
+      //     })
+      //   )
+      // }
 
       return res.json(device)
     } catch (e) {
