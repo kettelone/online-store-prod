@@ -7,8 +7,17 @@ const ApiError = require('../error/ApiError')
 class DeviceController {
   async create(req, res, next) {
     try {
-      let { name, price, brandId, typeId, info, weight, subtypeId, imgUrl } =
-        req.body
+      let {
+        name,
+        price,
+        brandId,
+        typeId,
+        info,
+        weight,
+        subtypeId,
+        imgUrl,
+        purchaseUnit,
+      } = req.body
 
       //WHEN FILES WERE DIRECTLY SAVED IN APP
       // const { img } = req.files
@@ -28,6 +37,7 @@ class DeviceController {
         subtypeId,
         img: imgUrl,
         weight,
+        purchaseUnit,
       })
 
       // if (info) {

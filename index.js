@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 5000
 const app = express()
 app.use(cors()) // чтобы можно было отправлять запросы с браузера
 app.use(express.json()) // чтобы приложение могло парсить json формат
-// app.use(express.static(path.resolve(__dirname, 'static')))
-app.use(express.static(path.join(__dirname, 'build')))
+app.use(express.static(path.resolve(__dirname, 'static')))
+// app.use(express.static(path.join(__dirname, 'build')))
 app.use(fileUpload({}))
 app.use('/api', router)
 

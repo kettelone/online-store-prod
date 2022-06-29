@@ -29,7 +29,7 @@ class UserController {
       firstName,
       secondName,
     })
-    const basket = await Basket.create({ userId: user.id })
+    // const basket = await Basket.create({ userId: user.id })
     const token = generateJwt(
       user.id,
       user.email,
