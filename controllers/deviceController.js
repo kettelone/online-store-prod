@@ -40,17 +40,6 @@ class DeviceController {
         purchaseUnit,
       })
 
-      // if (info) {
-      //   info = JSON.parse(info)
-      //   info.forEach((i) =>
-      //     DeviceInfo.create({
-      //       title: i.title,
-      //       description: i.description,
-      //       deviceId: device.id,
-      //     })
-      //   )
-      // }
-
       return res.json(device)
     } catch (e) {
       console.log(e)
@@ -64,6 +53,17 @@ class DeviceController {
     limit = limit || 10
     let offset = page * limit - limit
     let devices
+
+    if (
+      !typeId &&
+      !subtypeId &&
+      !brandId &&
+      page === 'all' &&
+      limit === 'all'
+    ) {
+      devices = await Device.findAndCountAll()
+      return res.json(devices)
+    }
 
     if (!typeId && !subtypeId && !brandId) {
       devices = await Device.findAndCountAll({ limit, offset })
@@ -129,13 +129,39 @@ class DeviceController {
     return res.json(device)
   }
 
-  async editOne(req, res) {
-    const { id, price } = req.params
+  async editOnePrice(req, res) {
+    const { id, price } = req.body.params.id
     const device = await Device.findOne({
       where: { id },
     })
     device.price = price
+    await device.save()
+  }
 
+  async editOneWeight(req, res) {
+    const { id, weight } = req.body.params.id
+    const device = await Device.findOne({
+      where: { id },
+    })
+    device.weight = weight
+    await device.save()
+  }
+
+  async editOneImage(req, res) {
+    const { id, newImgUrl } = req.body.params.id
+    const device = await Device.findOne({
+      where: { id },
+    })
+    device.img = newImgUrl
+    await device.save()
+  }
+
+  async editOneName(req, res) {
+    const { id, newName } = req.body.params.id
+    const device = await Device.findOne({
+      where: { id },
+    })
+    device.name = newName
     await device.save()
   }
 
@@ -175,8 +201,33 @@ class DeviceController {
     const result = await Device.destroy({
       where: { id },
     })
+  }
 
-    console.log('Result is: ', result)
+  async deleteOneImage(req, res) {
+    const { imageKey } = req.query
+
+    const s3 = new aws.S3({
+      region: 'eu-west-1',
+      accessKeyId: process.env.ACCESS_KEY_ID,
+      secretAccessKey: process.env.SECRET_ACCESS_KEY,
+    })
+
+    try {
+      const response = await s3
+        .deleteObject({
+          Bucket: process.env.S3_BUCKET,
+          Key: imageKey,
+        })
+        .promise()
+        .then(
+          console.log({
+            message: `${imageKey} was succesfully deleted from the bucket ${process.env.S3_BUCKET}`,
+          })
+        )
+      console.log(response)
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 

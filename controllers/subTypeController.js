@@ -8,6 +8,16 @@ class SubTypeController {
     return res.json(subtype)
   }
 
+  async editSubTypeName(req, res) {
+    const { id, name } = req.body.params.id
+    const subType = await SubType.findOne({
+      where: { id },
+    })
+    subType.name = name
+    await subType.save()
+    return res.json(subType)
+  }
+
   async getAll(req, res) {
     const subtypes = await SubType.findAll()
     return res.json(subtypes)
