@@ -55,6 +55,11 @@ const DeviceInfo = sequelize.define('device_info', {
   description: { type: DataTypes.STRING, allowNull: false },
 })
 
+const OrderInfo = sequelize.define('order_info', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  info: { type: DataTypes.JSON, allowNull: false },
+})
+
 // const TypeBrand = sequelize.define('type_brand', {
 //   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 // })
@@ -104,6 +109,6 @@ module.exports = {
   SubType,
   Brand,
   Rating,
-  // TypeBrand,
   DeviceInfo,
+  OrderInfo,
 }

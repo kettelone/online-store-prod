@@ -4,7 +4,7 @@ const ApiError = require('../error/ApiError')
 class BrandController {
   async create(req, res) {
     const { name, subtypeId } = req.body
-    console.log(name, subtypeId)
+    // console.log(name, subtypeId)
     try {
       const brand = await Brand.create({ name, subtypeId })
       return res.json(brand)
