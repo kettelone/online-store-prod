@@ -15,14 +15,13 @@ class BasketController {
     let customDescription = ''
     basketContent.map((item) => {
       customDescription +=
-        `*${item.name} - ${item.totalCount} ${item.purchaseUnit} - ${item.price}грн/${item.purchaseUnit}` +
+        `*${item.name} - ${item.totalCount} ${item.purchaseUnit} - ${item.price}грн/` +
         '\n'
     })
 
     const response = liqpay.cnb_object({
       action: 'pay',
       amount,
-      dkjhfhdjs,
       currency: 'UAH',
       description: customDescription,
       result_url: process.env.FRONTEND_URL,
