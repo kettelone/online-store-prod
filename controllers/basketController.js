@@ -22,6 +22,7 @@ class BasketController {
     const response = liqpay.cnb_object({
       action: 'pay',
       amount,
+      dkjhfhdjs,
       currency: 'UAH',
       description: customDescription,
       result_url: process.env.FRONTEND_URL,
