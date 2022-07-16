@@ -1,12 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.3bbb03ac.css",
-    "main.js": "/static/js/main.984ffccc.js",
+    "main.css": "/static/css/main.332f7264.css",
+    "main.js": "/static/js/main.f470d519.js",
+    "static/media/cashPayment.svg": "/static/media/cashPayment.c0f704bbf1d1dca1c730f6595379aaf3.svg",
     "static/media/eggs.svg": "/static/media/eggs.c6f932ab294f3e7247c23be474850aae.svg",
     "static/media/seasonings.svg": "/static/media/seasonings.7a74866c7068b58a135f876a92018db6.svg",
     "static/media/dumpling.svg": "/static/media/dumpling.4d5e0e839a5e306d336c2d1e238c3b38.svg",
     "static/media/cart.ico": "/static/media/cart.8d8de86003c1d1ac1d19.ico",
     "static/media/snacks.svg": "/static/media/snacks.aab0ca6b46066ad4ed2d4d19cfe62276.svg",
+    "static/media/creditCardSvg.svg": "/static/media/creditCardSvg.4a48989a45201143b56225210e318880.svg",
     "static/media/coffee.svg": "/static/media/coffee.c62d5c726494e6498a765f6db342c9ad.svg",
     "static/media/doorExit.svg": "/static/media/doorExit.4dac85320aa9175cf646bb89205d6bb5.svg",
     "static/media/canned.svg": "/static/media/canned.7e758950fd8434186cc96e1f57efb4c9.svg",
@@ -20,11 +22,11 @@
     "static/media/user.svg": "/static/media/user.5791675428140e73790cc5801c3fba30.svg",
     "index.html": "/index.html",
     "static/media/menu.svg": "/static/media/menu.aea105dfab764f8e2ff373336a45ec51.svg",
-    "main.3bbb03ac.css.map": "/static/css/main.3bbb03ac.css.map",
-    "main.984ffccc.js.map": "/static/js/main.984ffccc.js.map"
+    "main.332f7264.css.map": "/static/css/main.332f7264.css.map",
+    "main.f470d519.js.map": "/static/js/main.f470d519.js.map"
   },
   "entrypoints": [
-    "static/css/main.3bbb03ac.css",
-    "static/js/main.984ffccc.js"
+    "static/css/main.332f7264.css",
+    "static/js/main.f470d519.js"
   ]
 }
